@@ -1,7 +1,17 @@
+from mcp.server.fastmcp import FastMCP
 
-def main():
-    print("Hello, MCP World!")
-    
+mcp = FastMCP("Example MCP Server")
+
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    """Add two numbers"""
+    return a + b
+
+@mcp.tool()
+def multiply(a: int, b: int) -> int:
+    """Multiply two numbers"""
+    return a * b
+
 if __name__ == "__main__":
-    main()
+    mcp.run(transport="streamable-http")
     
